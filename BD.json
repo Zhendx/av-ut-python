@@ -1,0 +1,236 @@
+{ 
+  "intents":[
+    {"tag": "saludo",
+        "patterns": ["hi", "hola", "¿cómo estás?", "hello", "¿qué tal?", "buen día", "qué haces?"],
+        "responses": ["¡Hola! Estoy aquí para ayudarte. ¿Qué necesitas?", "¿Cómo va todo? ¿En qué puedo ayudarte?", 
+                      "¡Hey! ¿Cómo puedo ayudarte?", "¡Hola! ¿Necesitas ayuda con algo?", 
+                      "Hola, ¿Hay algo que desees saber?", "¡Hola! ¿Con qué puedo ayudarte hoy?"]
+    },
+    {"tag": "presentación",
+      "patterns": ["quién eres?", "cómo te llamas?"],
+      "responses": ["Soy un asistente virtual. Puedes requerir mi ayuda sobre tus dudas",
+                    "Encantado, soy el medio que puede brindarte la información que requieras",
+                    "¡Hola! Soy UTM-bot, pero puedes llamarme "]
+    },
+    {"tag": "función",
+      "patterns": ["cuál es tu función?", "para qué sirves?"
+      ],
+      "responses":["Mi función es brindarte información sobre temas de los cuales tengas dudas",
+                   "Puedo ayudarte con tus dudas sobre procesos que se realizan en la UTMACH"]
+    },
+    {"tag": "carreras de la UTMACH",
+        "patterns": ["carreras existentes de la utmach", "carreras existentes de la universidad", 
+                     "qué carreras hay en la utmach", "qué carreras hay en la universidad", 
+                     "cuáles son las carreras de la utmach", "cuáles son las carreras de la universidad",
+                     "carreras de la utmach", "carreras de la universidad",
+                     "nombre de las carreras de la utmach", "nombre de las carreras de la universidad",
+                     "carreras que existen en la utmach", "carreras que existen en la universidad" 
+                    ],
+        "responses": ["Las carreras que oferta la UTMACH son: Artes Plásticas y Visuales, Artes Plásticas (Rediseño), Ciencias de la Educación Mención Cultura Física, Pedagogía de la Actividad Física y Deporte (Rediseño), Ciencias de la Educación Mención Docencia en Informática, Pedagogía de las Ciencias Experimentales (Rediseño), Ciencias de la Educación Mención Educación Básica, Educación Básica (Rediseño), Ciencias de la Educación Mención Educación Inicial y Parvularia, Educación Inicial (Rediseño), Ciencias de la Educación Mención Físico Matemáticas, Ciencias de la Educación Mención Inglés, Pedagogía de los Idiomas Nacionales y Extranjeros (Rediseño), Ciencias de la Educación Mención Lengua y Literatura, Ciencias de la Educación Mención Psicología Educativa y Orientación Vocacional, Psicopedagogía (Rediseño), Psicología Clínica, Comunicación Social, Psicología Clínica (Rediseño), Comunicación (Rediseño), Estudios Sociales, Jurisprudencia, Derecho (Rediseño), Gestión Ambiental, Sociología y Ciencias Políticas, Sociología (Rediseño), Trabajo Social, Trabajo Social (Rediseño), Ciencias de la Educación Mención Cultura Física, Ciencias de la Educación Mención Docencia en Informática, Ciencias de la Educación Mención Educación Básica, Ciencias de la Educación Mención Educación Inicial y Parvularia, Alimentos, Ingeniería en Alimentos, Ingeniería Química, Ingeniería Química (Rediseño), Bioquímica y Farmacia, Bioquímica y Farmacia – Rediseño, Ciencias Médicas, Medicina, Enfermería, Enfermería (Rediseño), Ingeniería Civil, Ingeniería En Sistemas, Tecnologías De La Información, Ingeniería Ambiental, Administración de Empresas, Administración de Empresas (Rediseño), Administración de Hotelería y Turismo, Comercio Exterior, Ingeniería en Marketing, Mercadotecnia, Contabilidad y Auditoría, Contabilidad y Auditoría (Rediseño), Economía (Rediseño), Comercio Internacional, Turismo, Acuicultura, Ingeniería Acuícola, Economía Agropecuaria, Agronomía, Ingeniería Agronómica, Medicina Veterinaria, Medicina,  Veterinaria y Zootecnia"]
+    }, 
+    {"tag": "facultades de la UTMACH",
+      "patterns": ["facultades de la utmach", "facultades de la universidad",
+                   "qué facultades hay en la utmach", "qué facultades hay en la universidad", 
+                   "cuales son las facultades que hay en la utmach", "cuales son las facultades que hay en la universidad",
+                   "como se llaman las facultades de la utmach", "como se llaman las facultades de la universidad"
+      ],
+      "responses":["Las facultades que existen en la UTMACH son: 1 Facultad de Ciencias Sociales (FCS), 2 Facultad de Ciencias Químicas y de la Salud (FCQS), 3 Facultad de Ingeniería Civil (FIC), 4 Facultad de Ciencias Empresariales (FCE), 5 Facultad de Ciencias Agropecuarias (FCA)"]
+    },
+    {"tag": "carreras presenciales FCS",
+      "patterns": ["carreras de sociales", "carreras que hay en la fcs", "carreras que hay en la facultad de ciencias sociales",
+                   "qué carreras hay en la facultad de sociales", "qué carreras hay en la facultad de ciencias sociales", 
+                   "cuáles son las carreras de la facultad de ciencias sociales", "cuáles son las carreras de la fcs", 
+                   "cómo se llaman las carreras que hay en la facultad de ciencias sociales", "cómo se llaman las carreras que hay en fcs"
+      ],
+      "responses":["Las carreras presenciales de la Facultad de Ciencias Sociales son: Artes Plásticas y Visuales, Artes Plásticas (Rediseño), Ciencias de la Educación Mención Cultura Física, Pedagogía de la Actividad Física y Deporte (Rediseño), Ciencias de la Educación Mención Docencia en Informática, Pedagogía de las Ciencias Experimentales (Rediseño), Ciencias de la Educación Mención Educación Básica, Educación Básica (Rediseño), Ciencias de la Educación Mención Educación Inicial y Parvularia, Educación Inicial (Rediseño), Ciencias de la Educación Mención Físico Matemáticas, Ciencias de la Educación Mención Inglés, Pedagogía de los Idiomas Nacionales y Extranjeros (Rediseño), Ciencias de la Educación Mención Lengua y Literatura, Ciencias de la Educación Mención Psicología Educativa y Orientación Vocacional, Psicopedagogía (Rediseño), Psicología Clínica, Comunicación Social, Psicología Clínica (Rediseño), Comunicación (Rediseño), Estudios Sociales, Jurisprudencia, Derecho (Rediseño), Gestión Ambiental, Sociología y Ciencias Políticas, Sociología (Rediseño), Trabajo Social, Trabajo Social (Rediseño)"]
+    },
+    {"tag": "carreras semipresenciales FCS",
+      "patterns": ["carreras semipresenciales de sociales", "carreras semipresenciales que hay en la fcs", "carreras semipresenciales que hay en la facultad de ciencias sociales",
+                   "qué carreras semipresenciales hay en la facultad de sociales", "qué carreras semipresenciales hay en la facultad de ciencias sociales", 
+                   "cuáles son las carreras semipresenciales de la facultad de ciencias sociales", "cuáles son las carreras semipresenciales de la fcs", 
+                   "cómo se llaman las carreras semipresenciales que hay en la facultad de ciencias sociales", "cómo se llaman las carreras semipresenciales que hay en fcs"
+      ],
+      "responses":["Las carreras semipresenciales de la Facultad de Ciencias Sociales son: Artes Plásticas y Visuales, Artes Plásticas (Rediseño), Ciencias de la Educación Mención Cultura Física, Pedagogía de la Actividad Física y Deporte (Rediseño), Ciencias de la Educación Mención Docencia en Informática, Pedagogía de las Ciencias Experimentales (Rediseño), Ciencias de la Educación Mención Educación Básica, Educación Básica (Rediseño), Ciencias de la Educación Mención Educación Inicial y Parvularia, Educación Inicial (Rediseño), Ciencias de la Educación Mención Físico Matemáticas, Ciencias de la Educación Mención Inglés, Pedagogía de los Idiomas Nacionales y Extranjeros (Rediseño), Ciencias de la Educación Mención Lengua y Literatura, Ciencias de la Educación Mención Psicología Educativa y Orientación Vocacional, Psicopedagogía (Rediseño), Psicología Clínica, Comunicación Social, Psicología Clínica (Rediseño), Comunicación (Rediseño), Estudios Sociales, Jurisprudencia, Derecho (Rediseño), Gestión Ambiental, Sociología y Ciencias Políticas, Sociología (Rediseño), Trabajo Social, Trabajo Social (Rediseño), Ciencias de la Educación Mención Cultura Física, Ciencias de la Educación Mención Docencia en Informática, Ciencias de la Educación Mención Educación Básica, Ciencias de la Educación Mención Educación Inicial y Parvularia, Alimentos, Ingeniería en Alimentos, Ingeniería Química, Ingeniería Química (Rediseño), Bioquímica y Farmacia, Bioquímica y Farmacia – Rediseño, Ciencias Médicas, Medicina, Enfermería, Enfermería (Rediseño), Ingeniería Civil, Ingeniería En Sistemas, Tecnologías De La Información, Ingeniería Ambiental, Administración de Empresas, Administración de Empresas (Rediseño), Administración de Hotelería y Turismo, Comercio Exterior, Ingeniería en Marketing, Mercadotecnia, Contabilidad y Auditoría, Contabilidad y Auditoría (Rediseño), Economía (Rediseño), Comercio Internacional, Turismo, Acuicultura, Ingeniería Acuícola, Economía Agropecuaria, Agronomía, Ingeniería Agronómica, Medicina Veterinaria, Medicina,  Veterinaria y Zootecnia"]
+    },
+    {"tag": "carreras FCQS",
+      "patterns": ["carreras de ciencias químicas", "carreras que hay en la fcqs", "carreras que hay en la facultad de ciencias químicas y de la salud",
+                   "qué carreras hay en la facultad de ciencias químicas y de la salud", "qué carreras hay en la facultad de ciencias químicas y de la salud", 
+                   "cuáles son las carreras de la facultad de ciencias químicas y de la salud", "cuáles son las carreras de la fcqs", 
+                   "cómo se llaman las carreras que hay en la facultad de ciencias químicas y de la salud", "cómo se llaman las carreras que hay en fcqs"
+      ],
+      "responses":["Las carreras de la Facultad de Ciencias Químicas y de la Salud son: Alimentos, Ingeniería en Alimentos, Ingeniería Química, Ingeniería Química (Rediseño), Bioquímica y Farmacia, Bioquímica y Farmacia – Rediseño, Ciencias Médicas, Medicina, Enfermería, Enfermería (Rediseño)"]
+    },
+    {"tag": "carreras FIC",
+      "patterns": ["carreras de fic", "carreras que hay en la fic", "carreras que hay en la facultad de ingeniería civil",
+                   "qué carreras hay en la facultad de ingeniería civil", "qué carreras hay en la fic", 
+                   "cuáles son las carreras de la facultad de ingeniería civil", "cuáles son las carreras de la fic", 
+                   "cómo se llaman las carreras que hay en la facultad de ingeniería civil", "cómo se llaman las carreras que hay en fic"
+      ],
+      "responses":["Las carreras de la Facultad de Ingeniería Civil son: Ingeniería Civil, Ingeniería En Sistemas, Tecnologías De La Información, Ingeniería Ambiental"]
+    },
+    {"tag": "carreras FCE",
+      "patterns": ["carreras de empresariales", "carreras que hay en la fce", "carreras que hay en la facultad de ciencias empresariales",
+        "qué carreras hay en la facultad de ciencias empresariales", "qué carreras hay en la fce", 
+        "cuáles son las carreras de la facultad de ciencias empresariales", "cuáles son las carreras de la fce", 
+        "cómo se llaman las carreras que hay en la facultad de ciencias empresariales", "cómo se llaman las carreras que hay en fce"
+      ],
+      "responses":["Las carreras de la Facultad de Ciencias Empresariales son: Administración de Empresas, Administración de Empresas (Rediseño), Administración de Hotelería y Turismo, Comercio Exterior, Ingeniería en Marketing, Mercadotecnia, Contabilidad y Auditoría, Contabilidad y Auditoría (Rediseño), Economía (Rediseño), Comercio Internacional, Turismo"]
+    },
+    {"tag": "carreras FCA",
+      "patterns": ["carreras de ciencias agropecuarias", "carreras que hay en la fca", "carreras que hay en la facultad de ciencias agropecuarias",
+                   "qué carreras hay en la facultad de ciencias agropecuarias", "qué carreras hay en la fca", 
+                   "cuáles son las carreras de la facultad de ciencias agropecuarias", "cuáles son las carreras de la fca", 
+                   "cómo se llaman las carreras que hay en la facultad de ciencias agropecuarias", "cómo se llaman las carreras que hay en fca"
+      ],
+      "responses":["Las carreras de la Facultad de Ciencias Agropecuarias son: Agronómica, Medicina Veterinaria, Medicina,  Veterinaria y Zootecnia"]
+    },
+    {"tag": "matrículas de primer semestre",
+      "patterns": ["cómo son las matrículas para primer semestre", "información de matrículas para primer semestre", "matrículas de primer semestre",
+                   "requisitos de matrícula de primer semestre", "qué se necesita para matricularse en primer semestre", 
+                   "cómo matricularme a primer semestre", "cómo me matriculo en primer semestre"
+      ],
+      "responses":["Guía de matrícula: https://drive.google.com/file/d/1_Rt5J5AvTMp0JpyXMSMczoj6EGsQ3SYk/view"]
+    },    
+    {"tag": "requisitos de matrícula",
+      "patterns": ["qué necesito para matricularme", "documentos que necesito para matricularme", "qué debo tener para matricularme", 
+                   "cuáles son los requisitos para matricularse", "qué se necesita tener para matricularse", 
+                   "requisitos para la matrícula", "requisitos para matricularme"
+      ],
+      "responses":["Guía y requisitos de matrícula: https://docs.google.com/document/d/1_6WK31GeDFly_UWsKs1x-o8gslrsFE5fuQfoWjqVo9A/edit"]
+    },
+    {"tag": "cronograma de matrículas",
+      "patterns": ["fechas de matrícula", "calendario para la matrícula", "calendario de matriculación",
+                   "cronograma de matrícula", "cronograma para matricularme", "cuándo me toca matricularme",
+                   "cuándo debo matricularme", "en qué fecha toca mi matrícula"
+      ],
+      "responses":["Cronograma de matrícula: https://docs.google.com/spreadsheets/d/1oWYTlo1RVOo8NlYjk3SmVPsD1wc9lKo_hCeKh8bVMQc/edit#gid=2111910434"]
+    },
+    {"tag": "pasos de matrícula en línea",
+      "patterns": ["cómo me matriculo", "pasos a seguir para matricularse", "cómo debo matricularme", "pasos para matricularme",
+                   "qué pasos debo seguir para matricularme", "necesito una guía para matricularme", "cuál es el proceso para matricularme",
+                   "proceso de matrícula", "qué pasos hay que seguir para matricularse"
+      ],
+      "responses":["Manual de matrícula en línea: https://drive.google.com/file/d/1_Rt5J5AvTMp0JpyXMSMczoj6EGsQ3SYk/view"]
+    },
+    {"tag": "fechas de postulación a carrera",
+      "patterns": ["fechas de postulación a una carrera", "quiero postularme a una carrera", "cuándo son las postulaciones para una carrera",
+                   "cuándo puedo postular a una carrera", "en qué fecha empiezan las postulaciones para la universidad", 
+                   "en qué fecha puedo postular para una carrera en la universidad"
+      ],
+      "responses":["Cronograma de postulación a carreras universitarias: "]
+    },
+    {"tag": "postulación a carrera",
+      "patterns": ["cómo postular a una carrera", "manual para postular a una carrera", "qué debo hacer para postularme a una carrera",
+                   "guía para postulaciones", "guía para postularse a una carrera", "manual o guía de postulación",
+                   "cuál es el proceso para postular a una carrera"
+      ],
+      "responses":["Guía de postulación a carreras universitarias: "]
+    },
+    {"tag": "información de becas",
+      "patterns": ["quiero información acerca de las becas", "becas en la utmach", 
+                   "cuáles son las becas que da la universidad", "cuáles son las becas que da la utmach",
+                   "quiero saber sobre las becas que se dan en la universidad", "quiero saber sobre las becas que se dan en la utmach" 
+      ],
+      "responses":["Información de becas: https://drive.google.com/file/d/1OuUYO97uhEUbtqKr9eD_seiBlu4N6TlW/view"]
+    },
+    {"tag": "requisitos becas económicas",
+      "patterns": ["qué necesito para postular a una beca de ayuda económica", "requisitos para ayuda económica",
+                   "qué debo presentar para postular a una beca de ayuda económica", "documentos de requisito para ayuda económica",
+                   "requisitos que se deben tener para postular a una beca de ayuda económica"                   
+      ],
+      "responses":["Requisitos para ayuda económica: "]
+    },
+    {"tag": "requisitos becas por excelencia académica",
+      "patterns": ["qué necesito para postular a una beca por excelencia académica", "requisitos para becas por excelencia académica",
+        "qué debo presentar para postular a una beca por excelencia académica", "documentos de requisito para becas por excelencia académica",
+        "requisitos que se deben tener para postular a una beca por excelencia académica" 
+      ],
+      "responses":["Requisitos para becas por excelencia académica: "]
+    },
+    {"tag": "requisitos ayudas tecnológicas",
+      "patterns": ["qué necesito para postular a una beca de ayuda tecnológica", "requisitos para ayuda tecnológica",
+                   "qué debo presentar para postular a una beca de ayuda tecnológica", "documentos de requisito para ayuda tecnológica",
+                   "requisitos que se deben tener para postular a una beca de ayuda tecnológica"
+      ],
+      "responses":["Requisitos para ayuda tecnológica: "]
+    },
+    {"tag": "cambio de carrera",
+      "patterns": ["quiero cambiarme de carrera", "cómo me cambio de carrera", "información para el cambio de carrera", 
+                   "qué necesito para cambiarme de carrera", "cómo es el proceso de cambio de carrera", 
+                   "qué debo hacer para cambiarme de carrera", "pasos para solicitar un cambio de carrera"
+      ],
+      "responses":["Información acerca del cambio de carrera:"]
+    },
+    {"tag": "eliminación de matrícula",
+      "patterns": ["quiero eliminar mi matrícula para este semestre", "cómo elimino mi matrícula",
+                   "puedo eliminar mi matrícula?", "proceso para la eliminación de matrícula", 
+                   "cuál es el proceso para eliminar una matrícula", "qué debo hacer para eliminar mi matrícula",
+                   "cómo gestionar la eliminación de mi matrícula de este período", "cómo solicito que mi matrícula sea eliminada"
+      ],
+      "responses":["Información de eliminación de matrícula: "]
+    },
+    {"tag": "pagos por materias perdidas",
+      "patterns": ["cómo pagar una materia que perdí", "cuál es el proceso para pagar por materias perdidas",
+                   "en dónde se paga por una materia perdidad", "cuál es el proceso para pagar por materias perdidas",
+                   "pasos para poder pagar las materias perdidas"
+      ],
+      "responses":["Facilidades de pago (Pag# 26): https://drive.google.com/file/d/1_Rt5J5AvTMp0JpyXMSMczoj6EGsQ3SYk/view"]
+    },
+    {"tag": "homologación",
+      "patterns": ["cuál es el proceso que se debe hacer para homologar", "proceso de homologación", "quiero saber sobre el proceso de homologación",
+                   "cómo homologar", "qué necesito para homologar", "cómo realizar el proceso de homologación", "información sobre homologación" 
+      ],
+      "responses":["Información sobre Homologaciones: "]
+    },
+    {"tag": "servicio comunitario",
+      "patterns": ["información sobre servicio comunitario", "es necesario hacer el servicio comunitario", "cuándo empezar el servicio comunitario",
+                   "opciones de servicio comunitario"
+      ],
+      "responses":["Información sobre servicio comunitario: "]
+    },
+    {"tag": "prácticas preprofesionales o laborales",
+      "patterns": ["cuál es el proceso de prácticas laborales", "cuál es el proceso de prácticas preprofesionales",
+                   "información sobre prácticas laborales", "información sobre prácticas preprofesionales",
+                   "cuándo hacer prácticas laborales", "cuándo hacer prácticas preprofesionales",
+                   "cómo se da el proceso de prácticas", "cómo se da el proceso de prácticas laborales", "cómo se da el proceso de prácticas preprofesionales" 
+      ],
+      "responses":["Información sobre Prácticas Preprofesionales o Laborales"]
+    },
+    {"tag": "proceso de titulación",
+      "patterns": ["información sobre el proceso de titulación", "opciones para poder titularse", "qué debo hacer para poder titularme",
+                   "qué opciones tengo para mi trabajo de grado", "qué opciones tengo para mi trabajo de titulación",
+                   "cómo puedo titularme", "qué se necesita presentar para poder titularse", "qué se necesita presentar para poder graduarse"
+      ],
+      "responses":["Información sobre el proceso de Titulación: "]
+    },
+    {"tag": "titulación por examen complexivo",
+      "patterns": ["información sobre el proceso de titulación por examen complexivo", "información sobre el proceso de graduación por examen complexivo",
+                   "cómo es el proceso de titulación por examen complexivo", "cómo es el proceso de graduación por examen complexivo",
+                   "requisitos para poder rendir examen complexivo", "directrices para titularse por examen complexivo", "directrices para graduarse por examen complexivo"
+      ],
+      "responses":["Información sobre el proceso de Titulación por examen complexivo"]
+    },
+    {"tag": "titulación por propuestas tecnológicas",
+      "patterns": ["información sobre el proceso de titulación por propuestas tecnológicas", "información sobre el proceso de graduación por propuestas tecnológicas",
+        "cómo es el proceso de titulación por propuestas tecnológicas", "cómo es el proceso de graduación por propuestas tecnológicas",
+        "directrices para titularse por propuestas tecnológicas", "directrices para graduarse por propuestas tecnológicas"
+      ],
+      "responses":["Información sobre el proceso de Titulación por propuestas tecnológicas"]
+    },
+    {"tag": "titulación por artículo científico",
+      "patterns": ["información sobre el proceso de titulación por artículo científico", "información sobre el proceso de graduación por artículo científico",
+        "cómo es el proceso de titulación por artículo científico", "cómo es el proceso de graduación por artículo científico",
+        "directrices para titularse por artículo científico", "directrices para graduarse por artículo científico"
+      ],
+      "responses":["Información sobre el proceso de Titulación por artículo científico"]
+    },
+    {"tag": "",
+      "patterns": [""
+      ],
+      "responses":["Lo siento, no logro entender. ¿Puedes ser más claro?", 
+                   "¡Oh! No he podido comprender. Inténtalo de nuevo, por favor.",
+                   "¿Puedes decirlo de forma más clara, por favor?", 
+                   "No pude entenderte. Repítelo de nuevo, por favor"]
+    }
+  ]
+}

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UTMACH</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato'>
+    <script src="https://kit.fontawesome.com/f2d97992c9.js" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://markjivko.com/dist/recorder.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bienvenidos al UTMACH Chatbot</h1>
+        <hr/>
+    </div>
+
+    <button class="chatbox-open">
+        <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
+    </button>
+    <button class="chatbox-close">
+        <i class="fa fa-close fa-2x" aria-hidden="true"></i>
+    </button>
+
+    <section class="chatbox-popup">
+        <!-- Cabezera del chat -->
+        <header class="chatbox-popup__header">
+            <aside style="flex:3">
+                <img class="chatbox-popup__avatar" 
+                    src="{{ url_for('static', filename='img/utm.png') }}" width="80px" aria-hidden="true">
+            </aside>
+            <aside style="flex:8">
+                <h3 style="margin-top: 10px; margin-bottom: 0; margin-left: 7px;">UTI - Asistente</h3>
+                <p style="margin-top: -6px; margin-left: 7px;">(En linea)</p>
+            </aside>
+            <aside style="flex:1">
+                <button class="chatbox-minimize"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+            </aside>            
+        </header>
+        <!-- Cuerpo del chat -->
+        <main id="chatbox-menu" class="chatbox-popup__main">
+            <div class="in0 chat incoming">
+                <div class="details">
+                    <p>Hola, soy tu amiga UTI-Bot en que puedo ayudarte</p>
+                </div>
+            </div> 
+            <div id="waiting" style="display: none;" class="waiting" style>
+                <div class="typing typing-1"></div>
+                <div class="typing typing-2"></div>
+                <div class="typing typing-3"></div>
+            </div> 
+        </main>
+        <!-- Pie de pagina del chat -->    
+        <footer class="chatbox-popup__footer">
+            <!-- Microfono -->           
+            <aside style="flex:1;color:#888;text-align:center;">  
+                <button type="button" id="record" title="Grabar" class="grabar">
+                    <span id="recordingA" class="spinner-grow" style="display: none;"></span>
+                    <i id="recordingB" class="fa fa-microphone" aria-hidden="true"></i>                        
+                </button>                              
+            </aside>
+            <!-- Texto -->
+            <aside class="quest" style="flex:10">
+                <textarea type="text" id="question" oninput="updateQuestion();" placeholder="Mensaje" autofocus></textarea>
+                <textarea type="text" id="question1" style="display: none;"></textarea>
+                <textarea type="text" id="question2" style="display: none;"></textarea>                                             
+            </aside>
+            <!-- Enviar -->
+            <aside style="flex:1;color:#888;text-align:center;">
+                <button style="display:none;" type="button" id="eliminar" title="Borrar" class="borrar">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+                <button type="button" id="submit-button" title="Enviar" class="enviar">
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </aside>
+        </footer>
+    </section>
+
+    <div class="holder">
+        <div data-role="controls">
+            <button id="record1"></button>
+        </div>
+        <div data-role="recordings"></div>
+    </div>      
+    
+    <script>
+        var id = 0;
+        var patron = /^\s+$/;    
+        var urlA;    
+        const record = document.getElementById('record'); 
+        let recognition = new webkitSpeechRecognition();
+        recognition.lang = 'es-ES';
+        recognition.continuous = true;
+        recognition.interimResults = false;
+
+        recognition.onresult = (event) => {
+            const results = event.results;
+            const frase = results[results.length - 1][0].transcript;
+            question1.value = frase;
+        }
+
+        recognition.onend = (event) => {
+            console.log(event.error)
+        }
+
+        recognition.onerror = (event) => {
+            console.log('El microfono deja de escuchar')
+        }
+        //Funcion para replicar la pregunta
+        function updateQuestion() {
+            let messageR = document.getElementById("question").value;
+            document.getElementById("question2").value = messageR;
+        }
+        //Funcion para detectar enlaces
+        function urlify(text) {
+            var urlRegex = /(https?:\/\/[^\s]+)/g;
+            return text.replace(urlRegex, function(url) {
+                return '<a href="' + url + '"  target="_blank">' + url + '</a>';
+            })            
+        }
+        //Funcion para remover caracteres especiales
+        function replaceCharacter(text){
+            const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U'};
+            return text.split('').map( letra => acentos[letra] || letra).join('').toString();	
+        }
+            
+        $.noConflict();        
+        jQuery(document).ready(function ($) {   
+
+            $("#question").keypress(function(e) {
+                if(e.which == 13) {   
+                    var message = "";               
+                    var esVacio = false;   
+                    if(patron.test($("#question").val())){
+                        esVacio = true;
+                    }    
+                    if($("#question").val()!="" & esVacio == false ){
+                        $("div.in"+id+".chat.incoming").after(`<div class="out${id+1} chat outgoing">
+                                                                    <div class="details">
+                                                                        <p>${$("#question").val()}</p>
+                                                                    </div>
+                                                                </div>`);
+                        id = id + 1;  
+                        $('#waiting').attr('style', 'display: -webkit-box');  
+                        $("#chatbox-menu").animate({ scrollTop: $('#chatbox-menu')[0].scrollHeight}, 1000);  
+                    }                 
+                    $("#question").val("")                            
+                }            
+            });
+
+            $("#question").keypress(function(e) {
+                if(e.which == 13) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "/chatbot",
+                        data: {
+                            question: replaceCharacter($("#question2").val())
+                        },
+                        success: function (result) {  
+                            var message = "";
+                            var esVacio = false;   
+                            var res = result.response.split(">");
+                            if(patron.test($("#question2").val())){
+                                esVacio = true;
+                            }  
+                            if($("#question2").val()!="" & esVacio == false){                                
+                                $('#waiting').attr('style', 'display: none');
+                                $("div.out"+id+".chat.outgoing").after(`<div class="in${id+1} chat incoming">
+                                                                            <div class="details">
+                                                                                <p>${urlify(result.response)}</p>
+                                                                            </div>
+                                                                        </div>`);                                          
+                                id = id + 1;
+                                $("#question2").val("")
+                                $("#chatbox-menu").animate({ scrollTop: $('#chatbox-menu')[0].scrollHeight}, 1000);
+                            }                        
+                        },
+                        error: function (result) {     
+                            $('#waiting').attr('style', 'display: none');                   
+                            $("div.out"+id+".chat.outgoing").after(`<div class="in${id+1} chat incoming">
+                                                                        <div class="details">
+                                                                            <p>Disculpa, no he entendido tu mensaje, podrias ser mas especifico</p>
+                                                                        </div>
+                                                                    </div>`);                            
+                            id = id + 1;
+                            $("#question2").val("")
+                            $("#chatbox-menu").animate({ scrollTop: $('#chatbox-menu')[0].scrollHeight}, 1000);
+                        }
+                    });
+                    
+                }
+            });        
+
+            $("#submit-button").click(function (e) {   
+                var esVacio = false; 
+                if(patron.test($("#question").val())){
+                    esVacio = true;
+                }                
+                if($("#question").val()!="" & esVacio == false ){                    
+                    $("div.in"+id+".chat.incoming").after(`<div class="out${id+1} chat outgoing">
+                                                                <div class="details">
+                                                                    <p>${$("#question").val()}</p>
+                                                                </div>
+                                                            </div>`);
+                    id = id + 1;
+                    $("#question").val("")  
+                    $('#waiting').attr('style', 'display: -webkit-box');
+                    $("#chatbox-menu").animate({ scrollTop: $('#chatbox-menu')[0].scrollHeight}, 1000);                    
+                }else{
+                    if($("#question1").val() != "") {
+                        $('#waiting').attr('style', 'display: -webkit-box');
+                        console.log("Entro al remov de audio wait2")
+                        id = id + 1;    
+                        $('#audioWait').remove();
+                        $('#audioWait2').attr('style', '');
+                        $("#question").attr('style', '');
+                        document.getElementById('question').disabled = false;
+                        $("#question").attr('placeholder', 'Mensaje');
+                        $("#eliminar").attr('style', 'display:none'); 
+                        $("#chatbox-menu").animate({ scrollTop: $('#chatbox-menu')[0].scrollHeight}, 1000);  
+                        $('#audioWait2').attr('id', '');
+                        document.getElementById('record').disabled = false;
+                    }else{
+                        $("header.chatbox-popup__header").after(`<div id="alerta" class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-bottom: 1px;padding-top: 1px;padding-bottom: 1px;">
+                                                                    Ups! no logramos escucharte, intentalo de nuevo.
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                                </div>`);    
+                        window.setTimeout(function() {
+                            $("#alerta").fadeTo(500, 0).slideUp(500, function(){
+                                $(this).remove(); 
+                            });
+                        }, 5000);                    
+                        $('#audioWait').remove();
+                        $('#audioWait2').remove();
+                        $("#question").attr('style', '');
+                        $("#eliminar").attr('style', 'display:none');                        
+                        $("#chatbox-menu").animate({ scrollTop: $('#chatbox-menu')[0].scrollHeight}, 1000); 
+                        document.getElementById('record').disabled = false;
+                    }                         
+                }
+            });            
+            
+            $("#submit-button").click(function (e) {
+                e.preventDefault();
+                if($("#question2").val() != ""){                
+                    chat();
+                }else{                                                    
+                    aud();                    
+                }  
+            });
+
+            function chat(){
+                $.ajax({
+                    type: "POST",
+                    url: "/chatbot",
+                    data: {
+                        question: replaceCharacter($("#question2").val())
+                    },
+                    success: function (result) {   
+                        var esVacio = false;   
+                        if(patron.test($("#question2").val())){
+                            esVacio = true;
+                        }                     
+                        if($("#question2").val()!="" & esVacio == false){  
+                            $('#waiting').attr('style', 'display: none');
+                            $("div.out"+id+".chat.outgoing").after(`<div class="in${id+1} chat incoming">
+                                                                        <div class="details">
+                                                                            <p>${urlify(result.response)}</p>
+                                                                        </div>
+                                                                    </div>`);                                                   
+                            id = id + 1;
+                            $("#question2").val("")
+                            $("#chatbox-menu").animate({ scrollTop: $('#chatbox-menu')[0].scrollHeight}, 1000);
+                        }
+                        $("#question2").val("")
+                    },
+                    error: function (result) { 
+                        $('#waiting').attr('style', 'display: none');                       
+                        $("div.out"+id+".chat.outgoing").after(`<div class="in${id+1} chat incoming">
+                                                                    <div class="details">
+                                                                        <p>Disculpa, no he entendido tu mensaje, podrias ser mas especifico</p>
+                                                                    </div>
+                                                                </div>`);                            
+                        id = id + 1;
+                        $("#question2").val("")
+                        $("#chatbox-menu").animate({ scrollTop: $('#chatbox-menu')[0].scrollHeight}, 1000);
+                    }
+                });
+            }
+            
+            function aud(){
+                $.ajax({
+                    type: "POST",
+                    url: "/audiobot",                                              
+                    data: {
+                        audio: $("#question1").val()
+                    },
+                    success: function (result) {  
+                        if($("#question1").val() != "") {               
+                            $('#waiting').attr('style', 'display: none');          
+                            $("div.out"+id+".chat.outgoing").after(`<div class="in${id+1} chat incoming">
+                                                                                    <div class="details">
+                                                                                        <p>${urlify(result.response)}</p>
+                                                                                    </div>
+                                                                                </div>`); 
+                            id = id + 1;
+                            $("#question1").val("")
+                            $("#chatbox-menu").animate({ scrollTop: $('#chatbox-menu')[0].scrollHeight}, 1000);
+                        }                        
+                    },
+                    error: function (result) {
+                        $('#waiting').attr('style', 'display: none');                        
+                        $("div.out"+id+".chat.outgoing").after(`<div class="in${id+1} chat incoming">
+                                                                    <div class="details">
+                                                                        <p>Disculpa, no he entendido tu audio, podrias ser mas especifico</p>
+                                                                    </div>
+                                                                </div>`);                            
+                        id = id + 1;
+                        $("#question1").val("")
+                        $("#chatbox-menu").animate({ scrollTop: $('#chatbox-menu')[0].scrollHeight}, 1000);
+                    }
+                });
+            }
+            
+            const chatbox = $;
+            chatbox(() => {
+                chatbox(".chatbox-open").click(() =>
+                    chatbox(".chatbox-popup, .chatbox-close").fadeIn()
+                );
+                chatbox(".chatbox-close").click(() =>
+                    chatbox(".chatbox-popup, .chatbox-close").fadeOut()
+                );                
+                chatbox(".chatbox-minimize").click(() => {
+                    chatbox(".chatbox-popup, .chatbox-close").fadeOut()
+                });                
+            });
+            
+            var myRecorder = {
+                objects: {
+                    context: null,
+                    stream: null,
+                    recorder: null
+                },
+                init: function () {
+                    if (null === myRecorder.objects.context) {
+                        myRecorder.objects.context = new (
+                                window.AudioContext || window.webkitAudioContext
+                                );
+                    }
+                },
+                start: function () {
+                    var options = {audio: true, video: false};
+                    navigator.mediaDevices.getUserMedia(options).then(function (stream) {
+                        myRecorder.objects.stream = stream;
+                        myRecorder.objects.recorder = new Recorder(
+                                myRecorder.objects.context.createMediaStreamSource(stream),
+                                {numChannels: 1}
+                        );
+                        myRecorder.objects.recorder.record();
+                    }).catch(function (err) {});
+                },
+                stop: function (listObject) {
+                    if (null !== myRecorder.objects.stream) {
+                        myRecorder.objects.stream.getAudioTracks()[0].stop();
+                    }
+                    if (null !== myRecorder.objects.recorder) {
+                        myRecorder.objects.recorder.stop();
+                        // Valida el objeto
+                        if (null !== listObject
+                                && 'object' === typeof listObject
+                                && listObject.length > 0) {
+                            // Exporta el archivo wav
+                            myRecorder.objects.recorder.exportWAV(function (blob) {
+                                var url = (window.URL || window.webkitURL)
+                                        .createObjectURL(blob);
+                                
+                                // Prepara el audio
+                                var audioObject = $('<audio controls></audio>')
+                                        .attr('src', url);
+
+                                // Agrega al chat el audio                  
+                                $("aside.quest").after(`<div id="audioWait" class="row">
+                                                            <audio style="width: 290px;" src="${url}" controls></audio>
+                                                        </div>`);
+                                $("#question").attr('style', 'display:none');
+                                $("#eliminar").attr('style', '');   
+
+                                $("div.in"+id+".chat.incoming").after(`<div id="audioWait2" class="out${id+1} chat outgoing" style="display: none;">
+                                                                            <div class="details">
+                                                                                <audio style="width: 290px;" src="${url}" controls></audio>
+                                                                            </div>
+                                                                        </div>`);                                
+                                document.getElementById('record').disabled = true;
+
+                                var holderObject = $('<div class="details"></div>')
+                                        .append(audioObject);
+
+                                // Agrega a la lista
+                                //listObject.append(holderObject);
+                            });
+                        }
+                    }                                        
+                }
+            };
+
+            // Prepara la lista de audios
+            var listObject = $('[data-role="recordings"]');
+
+            $("#eliminar").click(function (e) {
+                $('#audioWait').remove();
+                $('#audioWait2').remove();
+                $("#question").attr('style', '');             
+                document.getElementById('question').disabled = false;
+                $("#question").attr('placeholder', 'Mensaje');   
+                $("#eliminar").attr('style', 'display:none');
+                $("#question1").val("")
+                document.getElementById('record').disabled = false;
+            });
+
+            // Prepara el boton de grabar   
+            $("#record").click(function (e) {
+                // Inicializa la grabacion
+                myRecorder.init();              
+
+                var buttonState = !!$(this).attr('data-recording');
+
+                if (!buttonState) {
+                    recognition.start();
+                    myRecorder.start();
+                    $(this).attr('data-recording', 'true');
+                    $("#recordingB").attr('style', 'position: absolute;padding: 10px;margin-left: -31.5px;margin-top: -1px;color: #0360a5;');
+                    $("#recordingA").attr('style', 'position: relative; color: #c9cacf;');
+                    $("#question").attr('placeholder', 'Grabando...');
+                    console.log("On")
+                    document.getElementById('submit-button').disabled = true;
+                    document.getElementById('question').disabled = true;
+                } else {
+                    recognition.stop();                    
+                    $(this).attr('data-recording', '');
+                    myRecorder.stop(listObject);                    
+                    $("#recordingB").attr('style', '');
+                    $("#recordingA").attr('style', 'display: none;');                    
+                    document.getElementById('submit-button').disabled = false;
+                    console.log("Of");                                      
+                }                 
+            });            
+        });          
+    </script>    
+    
+</body>
+
+</html>
