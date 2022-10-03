@@ -9,8 +9,9 @@ import json
 import random
 import pymongo
 
+URI="--Aqui va la URI de MongoDB--"
 # Conexion con la base de datos
-client = pymongo.MongoClient("mongodb+srv://bot:bot@cluster0.yixc3.mongodb.net/Bot?retryWrites=true&w=majority")
+client = pymongo.MongoClient(URI)
 db = client.Bot
 col = db["intents"]
 
